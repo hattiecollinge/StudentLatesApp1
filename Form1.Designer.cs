@@ -37,6 +37,7 @@
             this.BasicLateForm = new System.Windows.Forms.Button();
             this.btnBetterLateFrm = new System.Windows.Forms.Button();
             this.btnAdvancedLate = new System.Windows.Forms.Button();
+            this.dtnDynamicControls = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstVStudents
@@ -117,11 +118,22 @@
             this.btnAdvancedLate.UseVisualStyleBackColor = true;
             this.btnAdvancedLate.Click += new System.EventHandler(this.btnAdvancedLate_Click);
             // 
+            // dtnDynamicControls
+            // 
+            this.dtnDynamicControls.Location = new System.Drawing.Point(426, 278);
+            this.dtnDynamicControls.Name = "dtnDynamicControls";
+            this.dtnDynamicControls.Size = new System.Drawing.Size(108, 43);
+            this.dtnDynamicControls.TabIndex = 5;
+            this.dtnDynamicControls.Text = "Even Even Better Late Form";
+            this.dtnDynamicControls.UseVisualStyleBackColor = true;
+            this.dtnDynamicControls.Click += new System.EventHandler(this.dtnDynamicControls_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dtnDynamicControls);
             this.Controls.Add(this.btnAdvancedLate);
             this.Controls.Add(this.btnBetterLateFrm);
             this.Controls.Add(this.BasicLateForm);
@@ -145,6 +157,7 @@
         private System.Windows.Forms.Button BasicLateForm;
         private System.Windows.Forms.Button btnBetterLateFrm;
         private System.Windows.Forms.Button btnAdvancedLate;
+        private System.Windows.Forms.Button dtnDynamicControls;
     }
 }
 

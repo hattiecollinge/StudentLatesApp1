@@ -11,44 +11,44 @@ using System.Windows.Forms;
 
 namespace StudentLatesApp
 {
-    public partial class FrmLatesV3 : Form
+    public partial class FrmLateDynamicControls : Form
     {
-        public FrmLatesV3()
+        public FrmLateDynamicControls()
         {
             InitializeComponent();
         }
 
-        private void FrmLatesV3_Load(object sender, EventArgs e)
+        private void FrmLateDynamicControls_Load(object sender, EventArgs e)
         {
-           
-
-
-                // list to hold the studetid and the student name
-                List<CLsStudent> studentList = new List<CLsStudent>();
+            int i = 0;
             clsDBConnector dbConnector = new clsDBConnector();
             OleDbDataReader dr;
             string sqlStr;
             dbConnector.Connect();
-            sqlStr = "SELECT studentid, (surName & " + "', '" + "& firstname) as studentName From tblStudent";
+            sqlStr = "SELECT studentID, (firstName & " + " " + "surName) as studentName FROM tblStudent";
             dr = dbConnector.DoSQL(sqlStr);
-            // add all the students to the list
             while (dr.Read())
             {
-                studentList.Add(new CLsStudent { studentID = Convert.ToInt32(dr[0]), studentname = dr[1].ToString() });
+                Button btn = new Button();
+                btn.BackColor = Color.Lime;
+                btn.ForeColor = Color.Black;
+                btn.Size = new Size(100, 90);
+                btn.Visible = true;
+                btn.Tag = dr[0].ToString();
+                btn.Text = dr[1].ToString();
+                btn.Name = "btn_ " + i;
+                i++;
+                btn.Click += Btn_Click; // type in btn.Click += <TAB><TAB>
+                flpStudents.Controls.Add(btn);
             }
-            cmbStudentID.DisplayMember = "studentname";
-            cmbStudentID.ValueMember = "studentid";
-            cmbStudentID.DataSource = studentList;
             dbConnector.Close();
-        }
-        class CLsStudent
-        {
-            public int studentID { get; set; }
-            public string studentname { get; set; }
+
         }
 
-        private void btnSaveLate_Click(object sender, EventArgs e)
+        private void Btn_Click(object sender, EventArgs e)
         {
+            Button button = (Button)sender;
+        
             int period = 0, minsLate = 0, minsFrom9am = 0;
             DateTime nineOclockDate = DateTime.Today; // the time at midnight this morning
             nineOclockDate = nineOclockDate.AddHours(9); // the date and time at 9:00am
@@ -73,14 +73,18 @@ namespace StudentLatesApp
                 period = 4;
                 minsLate = minsLate - 350;
             }
-
             clsDBConnector dbConnector = new clsDBConnector();
             string cmdStr = $"INSERT INTO tblLate  (studentID,period, dateOfLate,minsLate) " +
-                $"VALUES ('{cmbStudentID.SelectedValue}' , '{period}', '{DateTime.Today}','{minsLate}')";
+                $"VALUES ('{(sender as Button).Tag.ToString()}' , '{period}', '{DateTime.Today}','{minsLate}')";
             dbConnector.Connect();
             dbConnector.DoDML(cmdStr);
             dbConnector.Close();
             (Application.OpenForms["Form1"] as Form1).DisplayData();
+           
+       
+            MessageBox.Show(button.Text + " is " + minsLate + " mins late");
+            dbConnector.Close();
+
         }
     }
 }

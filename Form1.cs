@@ -67,5 +67,11 @@ namespace StudentLatesApp
             FrmLatesV3 studentForm = new FrmLatesV3();
             studentForm.Show();
         }
+
+        private void dtnDynamicControls_Click(object sender, EventArgs e)
+        {
+            FrmLateDynamicControls studentForm = new FrmLateDynamicControls();
+            studentForm.Show();
+        }
     }
 }

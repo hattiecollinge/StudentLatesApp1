@@ -60,6 +60,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmLateDynamicControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLateDynamicControls.Designer.cs">
+      <DependentUpon>FrmLateDynamicControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLatesV2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLateDynamicControls.resx">
+      <DependentUpon>FrmLateDynamicControls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLatesV2.resx">
       <DependentUpon>FrmLatesV2.cs</DependentUpon>
